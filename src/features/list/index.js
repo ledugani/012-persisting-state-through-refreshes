@@ -34,9 +34,12 @@ class List extends React.Component {
 
         <ul>
           {
-            this.props.list.map(item =>
+            this.props.list.map((item, index) =>
               <li>
                 {item}
+                <button
+                  onClick={() => { this.props.remove(index) }}
+                >x</button>
               </li>
             )
           }
@@ -56,6 +59,9 @@ function mapDispatchToProps(dispatch) {
   return {
     add: (value) => {
       dispatch({ type: 'ADD', payload: value })
+    },
+    remove: (index) => {
+      dispatch({ type: 'REMOVE', payload: index })
     }
   }
 }
